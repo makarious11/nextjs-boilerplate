@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AURA Visual — Creative Visual Studio</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <meta name="description" content="AURA Visual — Design. Shoot. Edit. Create. Photo & Video Production Studio." />
+
+  <style>
+    :root{
+      --purple-main: #9146FF;
+      --pink-accent: #FF5CA0;
+      --bg-dark-1: #1A002D;
+      --bg-dark-2: #000000;
+      --white: #FFFFFF;
+      --muted: rgba(255,255,255,0.75);
+      --glass: rgba(255,255,255,0.04);
+      --radius: 14px;
+      --max-width: 1200px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      color:var(--white);
+      background: linear-gradient(180deg,var(--bg-dark-1) 0%, var(--bg-dark-2) 100%);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+
+    .container{max-width:var(--max-width);margin:0 auto;padding:28px;}
+
+    /* NAV */
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:18px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:14px;
+    }
+    .brand .logo{
+      width:56px;height:56px;border-radius:12px;
+      background:linear-gradient(180deg,var(--pink-accent),var(--purple-main));
+      display:flex;align-items:center;justify-content:center;font-weight:700;
+      font-family:"Bebas Neue";font-size:20px;
+      box-shadow:0 6px 18px rgba(145,70,255,0.18);
+    }
+    .brand .title{
+      display:flex;flex-direction:column;line-height:1;
+    }
+    .brand .title h1{font-family:"Bebas Neue";letter-spacing:6px;margin:0;font-size:20px}
+    .brand .title p{margin:0;font-size:12px;color:var(--muted)}
+
+    nav .nav-links{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600;font-size:14px}
+    .cta{
+      background:linear-gradient(90deg,var(--purple-main),var(--pink-accent));
+      padding:10px 16px;border-radius:10px;color:#fff;text-decoration:none;font-weight:700;
+      box-shadow:0 8px 22px rgba(145,70,255,0.16);
+    }
+
+    /* HERO */
+    .hero{
+      min-height:70vh;
+      display:flex;align-items:center;
+      gap:36px;
+      padding:40px 0;
+    }
+    .hero .left{flex:1}
+    .hero h2{
+      font-family:"Bebas Neue";font-size:56px;margin:0 0 18px 0;letter-spacing:4px;
+    }
+    .hero p.lead{margin:0 0 22px 0;color:var(--muted);max-width:720px;font-size:16px}
+    .hero .buttons{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{
+      padding:12px 18px;border-radius:10px;font-weight:700;text-decoration:none;
+      display:inline-flex;align-items:center;gap:10px;
+    }
+    .btn-primary{background:linear-gradient(90deg,var(--purple-main),var(--pink-accent));color:#fff}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--white)}
+
+    /* Hero visual */
+    .hero .visual{
+      width:470px;height:320px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.6);
+      flex-shrink:0;
+    }
+    .hero .visual img{width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.05)}
+    .hero .visual:after{
+      content:"";position:absolute;inset:0;border-radius:16px;
+      background: linear-gradient(180deg, rgba(145,70,255,0.06), rgba(255,92,160,0.03));
+      mix-blend-mode:overlay;
+    }
+
+    /* SECTIONS */
+    section{padding:40px 0}
+    .section-title{display:flex;align-items:end;justify-content:space-between;gap:12px}
+    .section-title h3{font-family:"Bebas Neue";font-size:28px;margin:0}
+    .subtitle{color:var(--muted);font-size:14px}
+
+    /* Portfolio grid */
+    .filters{display:flex;gap:10px;margin:18px 0 26px}
+    .filters button{padding:8px 12px;border-radius:10px;border:0;background:var(--glass);color:var(--white);cursor:pointer}
+    .filters button.active{background:linear-gradient(90deg,var(--purple-main),var(--pink-accent));box-shadow:0 8px 20px rgba(145,70,255,0.12);}
+
+    .grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+    }
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      padding:12px;border-radius:12px;overflow:hidden;position:relative;min-height:220px;
+      transition:transform .36s ease, box-shadow .36s ease;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 36px rgba(0,0,0,0.6)}
+    .card img{width:100%;height:140px;object-fit:cover;border-radius:8px}
+    .card h4{margin:10px 0 6px 0;font-size:16px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+
+    /* Services */
+    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .service{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;padding:18px;min-height:140px;
+    }
+    .service h5{margin:8px 0 6px 0}
+    .service p{color:var(--muted);font-size:13px;margin:0 0 10px}
+
+    /* About */
+    .about{display:flex;gap:24px;align-items:center}
+    .about .bio{flex:1}
+    .about .video{width:420px;height:260px;border-radius:12px;background:#0a0a0a;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+
+    /* Contact */
+    .contact{display:grid;grid-template-columns:1fr 380px;gap:22px;align-items:start}
+    .contact form{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .field{display:flex;flex-direction:column;margin-bottom:12px}
+    label{font-size:13px;color:var(--muted);margin-bottom:6px}
+    input[type="text"], input[type="email"], textarea, select{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:8px;color:var(--white);outline:none;
+    }
+    textarea{min-height:120px;resize:vertical}
+    .send{background:linear-gradient(90deg,var(--purple-main),var(--pink-accent));padding:12px;border-radius:10px;border:0;color:#fff;font-weight:700;cursor:pointer}
+
+    .contact .side{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px}
+    .whatsapp{display:inline-flex;align-items:center;gap:10px;padding:12px;border-radius:10px;background:#075E54;color:#fff;text-decoration:none;font-weight:700}
+
+    /* Footer */
+    footer{padding:30px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,0.02);margin-top:30px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .grid{grid-template-columns:repeat(2,1fr)}
+      .services{grid-template-columns:repeat(2,1fr)}
+      .hero .visual{width:360px;height:260px}
+    }
+    @media (max-width:680px){
+      nav .nav-links{display:none}
+      .hero{flex-direction:column;align-items:flex-start}
+      .hero .visual{width:100%;height:220px}
+      .grid{grid-template-columns:1fr}
+      .services{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .about{flex-direction:column}
+    }
+
+    /* subtle animations (reduced motion respects) */
+    [data-animate]{opacity:0;transform:translateY(14px);transition:all .6s cubic-bezier(.2,.9,.2,1)}
+    [data-animate].active{opacity:1;transform:none}
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <div class="brand">
+        <!-- Replace with your logo image if available -->
+        <div class="logo" aria-hidden="true">A</div>
+        <div class="title">
+          <h1>AURA</h1>
+          <p>Creative Visual Studio</p>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div style="display:flex;gap:10px;align-items:center">
+        <a class="cta" href="#contact">Get in touch</a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="left">
+        <h2 data-animate>Where Light Meets Story</h2>
+        <p class="lead" data-animate>Design. Shoot. Edit. Create. We craft cinematic visuals, photography and scripts that carry emotion and meaning — visual storytelling that leaves an AURA.</p>
+
+        <div class="buttons" data-animate>
+          <a class="btn btn-primary" href="#work">View Work</a>
+          <a class="btn btn-ghost" href="#contact">Book a Project</a>
+        </div>
+
+        <div style="margin-top:22px;color:var(--muted);font-size:13px" data-animate>Services: Design • Photography • Scriptwriting • Video Editing</div>
+      </div>
+
+      <div class="visual" aria-hidden="true">
+        <!-- replace src with a showcase image or looping video poster -->
+        <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=8f8f9bb6b80f74e8b2f887a0d7f1e2d2" alt="Aura showcase">
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="work">
+      <div class="section-title">
+        <h3>Selected Work</h3>
+        <div class="subtitle">Design — Photography — Video — Scripts</div>
+      </div>
+
+      <div class="filters" role="tablist" aria-label="Portfolio filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+        <button class="filter-btn" data-filter="photo">Photography</button>
+        <button class="filter-btn" data-filter="video">Video</button>
+        <button class="filter-btn" data-filter="script">Scripts</button>
+      </div>
+
+      <div class="grid" id="portfolioGrid">
+        <!-- sample cards (replace images + texts with your projects) -->
+        <div class="card" data-category="design">
+          <img src="https://images.unsplash.com/photo-1529101091764-c3526daf38fe?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=272e9f4a2f3f2dc1b2a5f8b8dbb6e3a5" alt="">
+          <h4>Brand Identity — Nume</h4>
+          <p>Full brand identity and social templates for a boutique.</p>
+        </div>
+
+        <div class="card" data-category="photo">
+          <img src="https://images.unsplash.com/photo-1493244040629-496f6d136cc3?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=12e7b8a37e1d3b3ef7f1f5f3b7b3a5d8" alt="">
+          <h4>Product Photography — Lumen</h4>
+          <p>Product stills & lifestyle shots for launch campaign.</p>
+        </div>
+
+        <div class="card" data-category="video">
+          <img src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=1d5ecb2f3f2a9f1f4d6a1b1b2c3d4e5f" alt="">
+          <h4>Short Film Edit — Echo</h4>
+          <p>Cinematic short form edit and color grade for festival submission.</p>
+        </div>
+
+        <div class="card" data-category="script">
+          <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=7b7a8a6a6f4b3c2d1e0f1a2b3c4d5e6f" alt="">
+          <h4>Script & Storyboard — The Quiet</h4>
+          <p>Short dramatic script and storyboard for branded content.</p>
+        </div>
+
+        <div class="card" data-category="photo">
+          <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=a9c3f1b1c9d9e7f6a6b5c4d3e2f1a0b9" alt="">
+          <h4>Event Coverage — Gala Night</h4>
+          <p>Event photography and highlight reel with cinematic cuts.</p>
+        </div>
+
+        <div class="card" data-category="design">
+          <img src="https://images.unsplash.com/photo-1503602642458-232111445657?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=b1d2c3e4f5a6b7c8d9e0f1a2b3c4d5e6" alt="">
+          <h4>Poster & Ad Design — Urban</h4>
+          <p>Campaign creative for social and outdoor ads.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="section-title">
+        <h3>Services</h3>
+        <div class="subtitle">Full production & post-production services</div>
+      </div>
+
+      <div class="services" data-animate>
+        <div class="service">
+          <h5>Graphic Design</h5>
+          <p>Brand identity, posters, thumbnails, banners & ad creatives.</p>
+          <div style="color:var(--muted);margin-top:12px">Starting from: <strong>$150</strong></div>
+        </div>
+
+        <div class="service">
+          <h5>Photography & Videography</h5>
+          <p>Product, lifestyle, portraits, and commercial shoots (Canon + iPhone setups).</p>
+          <div style="color:var(--muted);margin-top:12px">Starting from: <strong>$250</strong></div>
+        </div>
+
+        <div class="service">
+          <h5>Scriptwriting & Storyboards</h5>
+          <p>Creative scripts, storyboards, and concept development for campaigns.</p>
+          <div style="color:var(--muted);margin-top:12px">Starting from: <strong>$120</strong></div>
+        </div>
+
+        <div class="service">
+          <h5>Video Editing & Motion</h5>
+          <p>Reels, ads, cinematic edits, color grading, and motion graphics.</p>
+          <div style="color:var(--muted);margin-top:12px">Starting from: <strong>$200</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-title">
+        <h3>About AURA</h3>
+        <div class="subtitle">We turn light into story</div>
+      </div>
+
+      <div class="about" data-animate>
+        <div class="bio">
+          <p style="color:var(--muted);margin-bottom:12px">
+            AURA Creative Visual Studio blends emotion, craft and cinematic thinking into every project.
+            We handle the full creative pipeline — from script and design to shooting and final edit — so brands can communicate visually with clarity and soul.
+          </p>
+
+          <ul style="color:var(--muted);padding-left:18px;margin-top:6px">
+            <li>Canon & mobile shooting</li>
+            <li>Cinematic color grading</li>
+            <li>Fast turnaround and client communication</li>
+            <li>Flexible packages for creators and businesses</li>
+          </ul>
+        </div>
+
+        <div class="video">
+          <!-- replace with short looping video or animated logo -->
+          <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1400&auto=format&fit=crop&ixlib=rb-4.0.3&s=6f6e6a5a4a3a2a1a0b9c8d7e6f5a4b3" alt="about visual" style="width:100%;height:100%;object-fit:cover">
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-title">
+        <h3>Contact & Book</h3>
+        <div class="subtitle">Tell us about your project — we'll get back within 24 hours</div>
+      </div>
+
+      <div class="contact" data-animate>
+        <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+          <!-- Replace formspree endpoint above with your ID -->
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="email">Email or WhatsApp</label>
+            <input id="email" name="email" type="text" required placeholder="email@example.com or +20...">
+          </div>
+          <div class="field">
+            <label for="service">Service</label>
+            <select id="service" name="service">
+              <option>Photography & Videography</option>
+              <option>Graphic Design</option>
+              <option>Scriptwriting</option>
+              <option>Video Editing</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Project brief</label>
+            <textarea id="message" name="message" placeholder="Brief info about your project..."></textarea>
+          </div>
+
+          <div style="display:flex;gap:10px;align-items:center">
+            <button class="send" type="submit">Send Request</button>
+            <div style="color:var(--muted);font-size:13px">or</div>
+            <!-- Replace number below with your WhatsApp number -->
+            <a class="whatsapp" href="https://wa.me/201234567890?text=Hi%20AURA%20Visual%2C%20I%20have%20a%20project%20..." target="_blank" rel="noopener">Message on WhatsApp</a>
+          </div>
+        </form>
+
+        <div class="side">
+          <h4 style="margin-top:0">Quick Info</h4>
+          <p style="color:var(--muted)">Typical process: Brief → Concept → Shooting → Edit → Delivery. We provide transparent quotes and timeline for every request.</p>
+
+          <div style="margin-top:12px">
+            <strong>Response time</strong>
+            <p style="color:var(--muted);margin:6px 0 0">We usually reply within 24 hours on business days.</p>
+          </div>
+
+          <div style="margin-top:14px">
+            <strong>Studio location</strong>
+            <p style="color:var(--muted);margin:6px 0 0">Cairo, Egypt — on-site & remote services available.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-inner">
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="width:44px;height:44px;border-radius:10px;background:linear-gradient(180deg,var(--pink-accent),var(--purple-main));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';">A</div>
+          <div>
+            <div style="font-weight:700">AURA Visual</div>
+            <div style="color:var(--muted);font-size:13px">Creative Visual Studio</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:14px;align-items:center">
+          <div style="color:var(--muted);font-size:13px">© <span id="year"></span> AURA Visual</div>
+          <a style="color:var(--muted);text-decoration:none" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+          <a style="color:var(--muted);text-decoration:none" href="#" target="_blank" rel="noopener">Behance</a>
+          <a style="color:var(--muted);text-decoration:none" href="#" target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    // small helpers: smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth',block:'start'});
+        }
+      });
+    });
+
+    // portfolio filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.card');
+    filterBtns.forEach(b=>{
+      b.addEventListener('click', ()=>{
+        filterBtns.forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        const filter = b.dataset.filter;
+        cards.forEach(c=>{
+          c.style.display = (filter === 'all' || c.dataset.category === filter) ? '' : 'none';
+        });
+      });
+    });
+
+    // animate on scroll (simple)
+    const animateEls = document.querySelectorAll('[data-animate]');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('active');
+      });
+    }, {threshold:0.12});
+    animateEls.forEach(el => obs.observe(el));
+
+    // form handling hint: you can keep default Formspree or replace with your API
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e)=>{
+      // leave native POST to Formspree; optionally intercept to show custom UI
+      // quick UX: show temporary disabled state
+      const btn = contactForm.querySelector('.send');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      setTimeout(()=>{ btn.disabled=false; btn.textContent='Send Request'; }, 2500);
+    });
+
+    // footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
